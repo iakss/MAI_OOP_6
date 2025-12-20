@@ -37,7 +37,6 @@ bool Visitor::Fight(npc::Dragon &target) {
     return false;
 
   if (attacker_->GetType() == npc::NPCType::Knight) {
-    // Knight eats Dragon
     NotifyKill(*attacker_, target);
     return true;
   }

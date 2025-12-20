@@ -1,6 +1,7 @@
 #include "world.hpp"
 #include "battle_visitor.hpp"
 #include "npc_factory.hpp"
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -105,14 +106,12 @@ size_t World::RunBattle(double range) {
       if (d > range)
         continue;
 
-      // A attacks B
       lib::combat_system::Visitor vis_a(a, observers_);
       if (b->AcceptFight(vis_a)) {
         b->Kill();
         ++removed;
         continue;
       }
-      // B attacks A
       lib::combat_system::Visitor vis_b(b, observers_);
       if (a->AcceptFight(vis_b)) {
         a->Kill();

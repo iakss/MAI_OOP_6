@@ -1,6 +1,7 @@
 #include "npc_factory.hpp"
 #include "observer.hpp"
 #include "world.hpp"
+
 #include <iostream>
 
 int main() {
