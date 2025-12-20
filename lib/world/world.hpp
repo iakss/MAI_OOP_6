@@ -3,6 +3,8 @@
 #include "npc.hpp"
 #include "observer.hpp"
 
+#include <vector>
+
 namespace lib::simulation {
 
 class World {

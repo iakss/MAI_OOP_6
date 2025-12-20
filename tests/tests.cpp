@@ -68,7 +68,7 @@ TEST(NPCFactory, ThrowsOnInvalidCoordinates) {
 }
 
 TEST(World, RejectsDuplicateNames) {
-  simulation::World w;
+  lib::simulation::World w;
   lib::npc::NPCFactory f;
   w.AddNPC(f.CreateFromString("Princess", "Anna", lib::npc::Point{0.0, 0.0}));
   EXPECT_THROW(w.AddNPC(f.CreateFromString("Dragon", "Anna",
@@ -80,7 +80,7 @@ TEST(World, SaveLoadRoundtrip) {
   const std::string fname = "test_save.txt";
   RemoveIfExists(fname);
 
-  simulation::World w;
+  lib::simulation::World w;
   lib::npc::NPCFactory f;
   w.AddNPC(f.CreateFromString("Princess", "Anna", lib::npc::Point{1.0, 1.0}));
   w.AddNPC(f.CreateFromString("Dragon", "Draco", lib::npc::Point{5.0, 5.0}));
@@ -91,14 +91,14 @@ TEST(World, SaveLoadRoundtrip) {
   EXPECT_NE(content.find("Anna"), std::string::npos);
   EXPECT_NE(content.find("Draco"), std::string::npos);
 
-  simulation::World loaded;
+  lib::simulation::World loaded;
   ASSERT_NO_THROW(loaded.LoadFromFile(fname));
 
   RemoveIfExists(fname);
 }
 
 TEST(CombatRules, DragonKillsPrincess) {
-  simulation::World w;
+  lib::simulation::World w;
   lib::npc::NPCFactory f;
   w.AddNPC(f.CreateFromString("Princess", "Anna", lib::npc::Point{10.0, 10.0}));
   w.AddNPC(f.CreateFromString("Dragon", "Draco", lib::npc::Point{12.0, 12.0}));
@@ -107,7 +107,7 @@ TEST(CombatRules, DragonKillsPrincess) {
 }
 
 TEST(CombatRules, KnightKillsDragon) {
-  simulation::World w;
+  lib::simulation::World w;
   lib::npc::NPCFactory f;
   w.AddNPC(
       f.CreateFromString("Dragon", "Smaug", lib::npc::Point{100.0, 100.0}));
@@ -118,7 +118,7 @@ TEST(CombatRules, KnightKillsDragon) {
 }
 
 TEST(CombatRules, PrincessNeverAttacks) {
-  simulation::World w;
+  lib::simulation::World w;
   lib::npc::NPCFactory f;
   w.AddNPC(f.CreateFromString("Princess", "Belle", lib::npc::Point{0.0, 0.0}));
   w.AddNPC(f.CreateFromString("Knight", "Arthur", lib::npc::Point{1.0, 1.0}));
@@ -128,7 +128,7 @@ TEST(CombatRules, PrincessNeverAttacks) {
 }
 
 TEST(ObserverTests, InMemoryObserverGetsNotified) {
-  simulation::World w;
+  lib::simulation::World w;
   lib::npc::NPCFactory f;
   auto testObs = std::make_shared<TestObserver>();
   w.AddObserver(testObs);
@@ -149,7 +149,7 @@ TEST(ObserverTests, FileObserverWritesLog) {
   const std::string logfile = "test_log.txt";
   RemoveIfExists(logfile);
 
-  simulation::World w;
+  lib::simulation::World w;
   lib::npc::NPCFactory f;
   w.AddObserver(lib::combat_system::MakeFileObserver(logfile));
 

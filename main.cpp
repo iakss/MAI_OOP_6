@@ -1,4 +1,3 @@
-// main.cpp
 #include "npc_factory.hpp"
 #include "observer.hpp"
 #include "world.hpp"
@@ -51,7 +50,7 @@ int main() {
     std::cout << "\nRunning battle with range = " << battle_range << "...\n";
     try {
       size_t removed = loaded.RunBattle(battle_range);
-      std::cout << "Number of removed (killed) NPCs: " << removed << "\n";
+      std::cout << "Number of killed NPCs: " << removed << "\n";
     } catch (const std::exception &e) {
       std::cerr << "Battle failed: " << e.what() << "\n";
     }

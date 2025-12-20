@@ -1,9 +1,11 @@
 #pragma once
 
-#include "battle_visitor.hpp"
-
 #include <string>
 #include <string_view>
+
+namespace lib::combat_system {
+class Visitor;
+}
 
 namespace lib::npc {
 

@@ -34,7 +34,7 @@ namespace lib::npc {
 std::shared_ptr<NPC> NPCFactory::Create(NPCType type, const std::string &name,
                                         Point pos) {
   if (!IsValidCoordinates(pos.x, pos.y)) {
-    exception::InvalidCoordinates("Coordinates must be in [0, 500]!");
+    throw exception::InvalidCoordinates("Coordinates must be in [0, 500]!");
   }
 
   switch (type) {
@@ -55,7 +55,7 @@ std::shared_ptr<NPC> NPCFactory::CreateFromString(std::string_view type_str,
   if (!ReadTypeFromString(type_str, npc_type)) {
     return nullptr;
   }
-  return NPCFactory::Create(npc_type, name, pos);
+  return Create(npc_type, name, pos);
 }
 
 std::shared_ptr<NPC>

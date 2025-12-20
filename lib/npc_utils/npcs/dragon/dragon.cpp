@@ -1,4 +1,5 @@
 #include "dragon.hpp"
+#include "battle_visitor.hpp"
 
 namespace lib::npc {
 
